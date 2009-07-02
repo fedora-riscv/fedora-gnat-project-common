@@ -1,0 +1,7 @@
+%_GNAT_project_dir /usr/lib/gnat
+# This is the directory where GNAT looks for project files by default.
+
+%GNAT_optflags %(echo '%{optflags}' | sed 's/--param=ssp-buffer-size=[0-9]*//') -R -XHARDWARE_PLATFORM=%{_arch}
+# Gnatmake doesn't recognize --param=ssp-buffer-size.
+# -R avoids an unnecessary runpath in some cases.
+# HARDWARE_PLATFORM is used by common.gpr.

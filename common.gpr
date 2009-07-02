@@ -1,0 +1,35 @@
+-- This file helps GNAT project files to work in a multilib system.
+-- Copyright 2009 B. Persson, Bjorn@Rombobeorn.se
+-- No restrictions are placed on this code.
+
+-- GNAT project files for packaged libraries need to point to architecture-
+-- specific files in /usr/lib or /usr/lib64 (or other architecture-specific
+-- directories). To work correctly in a multilib system they should import
+-- this file and use the variable Lib, for example like this:
+--
+--    for Library_Dir use "/usr/" & Common.Lib;
+--
+-- Information on the what the hardware platform is comes from the environment
+-- variable HARDWARE_PLATFORM, which is defined in /etc/profile.d/ and can be
+-- changed with the command "setarch" or overridden by a command line parameter.
+-- It may be undefined in a non-interactive shell, so automated build scripts
+-- should probably define it themselves or use the command line parameter. RPM
+-- spec files should simply use the macro GNAT_optflags.
+
+project Common is
+
+   type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "ia64", "s390x");
+   HARDWARE_PLATFORM : Platform_Type := external ("HARDWARE_PLATFORM");
+
+   Lib := "";
+   case HARDWARE_PLATFORM is
+      when "i386" | "ppc" =>
+         Lib := "lib";
+      when "x86_64" | "ppc64" | "ia64" | "s390x" =>
+         Lib := "lib64";
+   end case;
+
+   -- This file is only for other projects to import. It has no source files.
+   for Source_Files use ();
+
+end Common;
