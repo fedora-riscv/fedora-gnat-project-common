@@ -18,14 +18,15 @@
 
 project Common is
 
-   type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "ia64", "s390x");
+   type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "s390", "s390x",
+                          "sparc", "sparc64", "arm", "alpha", "ia64");
    HARDWARE_PLATFORM : Platform_Type := external ("HARDWARE_PLATFORM");
 
    Lib := "";
    case HARDWARE_PLATFORM is
-      when "i386" | "ppc" =>
+      when "i386" | "ppc" | "s390" | "sparc" | "arm" =>
          Lib := "lib";
-      when "x86_64" | "ppc64" | "ia64" | "s390x" =>
+      when "x86_64" | "ppc64" | "s390x" | "sparc64" | "alpha" | "ia64" =>
          Lib := "lib64";
    end case;
 
