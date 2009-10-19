@@ -1,5 +1,5 @@
 %_GNAT_project_dir /usr/lib/gnat
-# This is the directory where GNAT looks for project files by default.
+# This is the directory where GNAT looks for project files by default, even on 64-bit systems.
 
 %GNAT_optflags %(echo '%{optflags}' | sed 's/--param=ssp-buffer-size=[0-9]*//') -R -XHARDWARE_PLATFORM=%{_arch}
 # Gnatmake doesn't recognize --param=ssp-buffer-size.
