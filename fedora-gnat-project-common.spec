@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -12,6 +12,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
 Requires:       gcc-gnat setup
+# workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
+Requires:       libgnat-static
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
@@ -55,6 +57,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Sep 04 2010 Björn Persson <bjorn@rombobjörn.se> - 1.2-2
+- Worked around bug 613407.
+
 * Tue Aug 04 2009 Björn Persson <bjorn@rombobjörn.se> - 1.2-1
 - Updated to version 1.2 with a more complete list of processor architectures.
 
