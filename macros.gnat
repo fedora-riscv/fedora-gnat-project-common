@@ -8,4 +8,4 @@
 # only -j from _smp_mflags.
 # -R avoids an unnecessary runpath in some cases.
 # -p creates directories specified in project files.
-# HARDWARE_PLATFORM is used by common.gpr.
+# HARDWARE_PLATFORM is used by directories.gpr.
