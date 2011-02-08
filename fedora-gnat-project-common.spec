@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        1.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Sat Sep 04 2010 Björn Persson <bjorn@rombobjörn.se> - 1.2-2
 - Worked around bug 613407.
 
