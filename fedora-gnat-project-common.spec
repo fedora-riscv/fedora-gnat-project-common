@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        1.2
-Release:        2%{?dist}
+Version:        2.1
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Feb 22 2011 Björn Persson <bjorn@rombobjörn.se> - 2.1-1
+- Updated to version 2.1 with directories.gpr.
+
 * Sat Sep 04 2010 Björn Persson <bjorn@rombobjörn.se> - 1.2-2
 - Worked around bug 613407.
 
