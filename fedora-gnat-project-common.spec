@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        2.1
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -39,7 +39,7 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 %install
 rm -rf %{buildroot}
 mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{_sysconfdir}/rpm/
-cp -p common.gpr %{buildroot}%{_GNAT_project_dir}/
+cp -p common.gpr directories.gpr %{buildroot}%{_GNAT_project_dir}/
 cp -p gnat-project.sh gnat-project.csh %{buildroot}%{_sysconfdir}/profile.d/
 cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Feb 27 2011 Björn Persson <bjorn@rombobjörn.se> - 2.1-1.fc14.1
+- Actually packaged directories.gpr.
+
 * Tue Feb 22 2011 Björn Persson <bjorn@rombobjörn.se> - 2.1-1
 - Updated to version 2.1 with directories.gpr.
 
