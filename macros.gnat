@@ -1,11 +1,16 @@
 %_GNAT_project_dir /usr/lib/gnat
 # This is the directory where GNAT looks for project files by default, even on 64-bit systems.
 
-%GNAT_optflags %(echo '%{optflags}' | sed 's/--param=ssp-buffer-size=[0-9]*//g') %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)') -R -p -XHARDWARE_PLATFORM=%{_arch}
-# Gnatmake doesn't recognize --param=ssp-buffer-size.
-# Gnatmake has a -j parameter just like Make, but it might not understand any
-# other Make parameter that might appear in _smp_mflags some day, so extract
-# only -j from _smp_mflags.
+%GNAT_builder_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)') -R -p -XHARDWARE_PLATFORM=%{_arch}
+# GNAT_builder_flags contains only parameters for the builder, that is either
+# Gnatmake or GPRbuild.
+# Gnatmake and GPRbuild have a -j parameter just like Make, but they might not
+# understand any other Make parameter that might appear in _smp_mflags some day,
+# so extract only -j from _smp_mflags.
 # -R avoids an unnecessary runpath in some cases.
 # -p creates directories specified in project files.
 # HARDWARE_PLATFORM is used by directories.gpr.
+
+%GNAT_optflags -cargs %{optflags} -margs %{GNAT_builder_flags}
+# GNAT_optflags contains both the parameters for the builder itself and
+# parameters that the builder shall pass to the compiler.
