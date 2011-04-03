@@ -57,7 +57,7 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Wed Feb 09 2011 Björn Persson <bjorn@rombobjörn.se> - 2.2-1
+* Wed Mar 03 2011 Björn Persson <bjorn@rombobjörn.se> - 2.2-1
 - Updated to version 2.2 which is compatible with GPRbuild (bug 691558).
 
 * Wed Feb 09 2011 Björn Persson <bjorn@rombobjörn.se> - 2.1-1
