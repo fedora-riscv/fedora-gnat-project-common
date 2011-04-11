@@ -11,6 +11,10 @@
 # -p creates directories specified in project files.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
-%GNAT_optflags -cargs %{optflags} -margs %{GNAT_builder_flags}
-# GNAT_optflags contains both the parameters for the builder itself and
-# parameters that the builder shall pass to the compiler.
+%Gnatmake_optflags -cargs %{optflags} -margs %{GNAT_builder_flags}
+%GPRbuild_optflags -cargs:Ada %{optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -margs %{GNAT_builder_flags}
+# Gnatmake_optflags and GPRbuild_optflags contain both the parameters for the
+# builder itself and parameters that the builder shall pass to the compiler.
+
+%GNAT_optflags %{Gnatmake_optflags}
+# GNAT_optflags is retained for compatibility.
