@@ -11,10 +11,20 @@
 # -p creates directories specified in project files.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
-%Gnatmake_optflags -cargs %{optflags} -margs %{GNAT_builder_flags}
-%GPRbuild_optflags -cargs:Ada %{optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -margs %{GNAT_builder_flags}
+%Ada_optflags %{optflags} -gnatn
+# Ada_optflags contains parameters to be passed to the compiler, GCC, when the
+# language being compiled is Ada.
+# -gnatn enables pragma Inline.
+
+%Gnatlink_flags -g
+# -g makes Gnatlink refrain from deleting binder files so that they can be
+# included in debuginfo packages.
+
+%Gnatmake_optflags -cargs %{Ada_optflags} -largs %{Gnatlink_flags} -margs %{GNAT_builder_flags}
+%GPRbuild_optflags -cargs:Ada %{Ada_optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -gargs %{GNAT_builder_flags}
 # Gnatmake_optflags and GPRbuild_optflags contain both the parameters for the
-# builder itself and parameters that the builder shall pass to the compiler.
+# builder itself and parameters that the builder shall pass to the tools it
+# invokes.
 
 %GNAT_optflags %{Gnatmake_optflags}
 # GNAT_optflags is retained for compatibility.
