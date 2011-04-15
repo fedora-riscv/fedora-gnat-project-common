@@ -1,5 +1,5 @@
 Name:           fedora-gnat-project-common
-Version:        2.2
+Version:        2.3
 Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
@@ -57,7 +57,10 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Wed Mar 03 2011 Björn Persson <bjorn@rombobjörn.se> - 2.2-1
+* Wed Apr 15 2011 Björn Persson <bjorn@rombobjörn.se> - 2.3-1
+- Updated to version 2.3 to get binder files back in debuginfo packages.
+
+* Wed Apr 03 2011 Björn Persson <bjorn@rombobjörn.se> - 2.2-1
 - Updated to version 2.2 which is compatible with GPRbuild (bug 691558).
 
 * Wed Feb 09 2011 Björn Persson <bjorn@rombobjörn.se> - 2.1-1
