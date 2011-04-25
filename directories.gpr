@@ -11,12 +11,12 @@
 --    for Library_Dir use Directories.Libdir;
 --    for Library_ALI_Dir use Directories.Libdir & "/example_library";
 --
--- Information on the what the hardware platform is comes from the environment
+-- Information on what the hardware platform is comes from the environment
 -- variable HARDWARE_PLATFORM, which is defined in /etc/profile.d/ and can be
 -- changed with the command "setarch" or overridden by a command line parameter.
 -- It may be undefined in a non-interactive shell, so automated build scripts
 -- should probably define it themselves or use the command line parameter. RPM
--- spec files should simply use the macro GNAT_optflags.
+-- spec files should simply use the macros that are defined in macros.gnat.
 
 project Directories is
 
