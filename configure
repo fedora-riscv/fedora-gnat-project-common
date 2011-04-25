@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Provide prefix, includedir and GNAT_project_dir to this script as environment
+# variables.
+
+for file in macros.gnat directories.gpr ; do
+    sed "--expression=s,@prefix@,${prefix},g" \
+        "--expression=s,@includedir@,${includedir},g" \
+        "--expression=s,@GNAT_project_dir@,${GNAT_project_dir},g" \
+        < "${file}.in" \
+        > "${file}"
+done
