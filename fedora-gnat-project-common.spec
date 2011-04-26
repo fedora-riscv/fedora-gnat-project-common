@@ -1,5 +1,5 @@
 Name:           fedora-gnat-project-common
-Version:        2.2
+Version:        3.1
 Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
@@ -23,9 +23,11 @@ project files of multiple Ada libraries, and also GNAT-specific RPM macros.
 Paketet fedora-gnat-project-common innehåller filer som används av
 GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
-# Extract the GNAT project file location from the file of macro definitions so
-# that this package won't build-require itself.
-%global _GNAT_project_dir %(tar --extract --gzip --to-stdout --no-anchored --file=%{SOURCE1} macros.gnat | grep ^._GNAT_project_dir | sed 's/[^ ]* *//')
+%global _GNAT_project_dir /usr/lib/gnat
+# This is the directory where GNAT looks for project files by default, even on
+# 64-bit systems.
+# _GNAT_project_dir is defined here and copied from here to macros.gnat so that
+# this package won't build-require itself.
 
 
 %prep
@@ -33,7 +35,7 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
 
 %build
-# nothing to do
+GNAT_project_dir=%{_GNAT_project_dir} prefix=%{_prefix} includedir=%{_includedir} ./configure
 
 
 %install
@@ -57,6 +59,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+*            2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1
+- Upgraded to version 3.1.
+- A configuration step has been added, so fewer directory names are hard-coded.
+- There are now separate RPM macros with parameters for different tools in the
+  GNAT toolchain.
+
 * Wed Mar 03 2011 Björn Persson <bjorn@rombobjörn.se> - 2.2-1
 - Updated to version 2.2 which is compatible with GPRbuild (bug 691558).
 
