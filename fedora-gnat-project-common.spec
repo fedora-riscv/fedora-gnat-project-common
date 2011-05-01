@@ -35,7 +35,7 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
 
 %build
-GNAT_project_dir=%{_GNAT_project_dir} prefix=%{_prefix} includedir=%{_includedir} ./configure
+exec_prefix=%{_exec_prefix} bindir=%{_bindir} libexecdir=%{_libexecdir} includedir=%{_includedir} GNAT_project_dir=%{_GNAT_project_dir} ./configure
 
 
 %install
