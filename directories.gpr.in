@@ -31,8 +31,10 @@ project Directories is
       when "x86_64" | "ppc64" | "s390x" | "sparc64" | "alpha" | "ia64" =>
          Lib := "lib64";
    end case;
-   Libdir := "@prefix@/" & Lib;
+   Libdir := "@exec_prefix@/" & Lib;
 
+   Bindir := "@bindir@";
+   Libexecdir := "@libexecdir@";
    Includedir := "@includedir@";
 
    -- This file is only for other projects to import. It has no source files.
