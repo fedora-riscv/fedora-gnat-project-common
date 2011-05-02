@@ -13,7 +13,7 @@
 
 %Ada_optflags %{optflags} -gnatn
 # Ada_optflags contains parameters to be passed to the compiler, GCC, when the
-# language being compiled is Ada.
+# language to be compiled is Ada.
 # -gnatn enables pragma Inline.
 
 %Gnatlink_flags -g
