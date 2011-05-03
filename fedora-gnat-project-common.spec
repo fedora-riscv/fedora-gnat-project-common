@@ -41,7 +41,7 @@ exec_prefix=%{_exec_prefix} bindir=%{_bindir} libexecdir=%{_libexecdir} included
 %install
 rm -rf %{buildroot}
 mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{_sysconfdir}/rpm/
-cp -p common.gpr directories.gpr %{buildroot}%{_GNAT_project_dir}/
+cp -p directories.gpr %{buildroot}%{_GNAT_project_dir}/
 cp -p gnat-project.sh gnat-project.csh %{buildroot}%{_sysconfdir}/profile.d/
 cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
@@ -59,7 +59,7 @@ rm -rf %{buildroot}
 
 
 %changelog
-*            2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1
+* Tue May 03 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1
 - Upgraded to version 3.1.
 - A configuration step has been added, so fewer directory names are hard-coded.
 - There are now separate RPM macros with parameters for different tools in the
