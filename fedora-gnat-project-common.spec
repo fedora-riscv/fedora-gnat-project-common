@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.1
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -8,7 +8,6 @@ Group:          System Environment/Libraries
 License:        Copyright only
 URL:            https://fedorahosted.org/released/fedora-gnat-project-common
 Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/download/fedora-gnat-project-common-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
 Requires:       gcc-gnat setup
@@ -39,19 +38,13 @@ exec_prefix=%{_exec_prefix} bindir=%{_bindir} libexecdir=%{_libexecdir} included
 
 
 %install
-rm -rf %{buildroot}
 mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{_sysconfdir}/rpm/
 cp -p directories.gpr %{buildroot}%{_GNAT_project_dir}/
 cp -p gnat-project.sh gnat-project.csh %{buildroot}%{_sysconfdir}/profile.d/
 cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
-%clean
-rm -rf %{buildroot}
-
-
 %files
-%defattr(-,root,root,-)
 %doc LICENSE
 %{_GNAT_project_dir}
 %config(noreplace) %{_sysconfdir}/profile.d/*
@@ -59,6 +52,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun May 22 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1.1
+- Removed some obsolete stuff.
+
 * Tue May 03 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1
 - Upgraded to version 3.1.
 - A configuration step has been added, so fewer directory names are hard-coded.
