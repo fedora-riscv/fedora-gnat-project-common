@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.1
-Release:        1.1%{?dist}
+Release:        1.1%{?dist}.1
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -11,8 +11,6 @@ Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/dow
 BuildArch:      noarch
 
 Requires:       gcc-gnat setup
-# workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
-Requires:       libgnat-static
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
@@ -52,6 +50,10 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Tue Jul 05 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1.1.el6.1
+- Branched for EPEL 6.
+- Removed the workaround for bug 613407, which doesn't exist in EPEL 6.
+
 * Sun May 22 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1.1
 - Removed some obsolete stuff.
 
