@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.1
-Release:        1.1%{?dist}
+Version:        3.2
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -13,6 +13,8 @@ BuildArch:      noarch
 Requires:       gcc-gnat setup
 # workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
 Requires:       libgnat-static
+# macros.gnat requires __global_ldflags:
+Requires:       redhat-rpm-config >= 9.1.0-13
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
@@ -52,6 +54,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Wed Aug 03 2011 Björn Persson <bjorn@rombobjörn.se> - 3.2-1
+- Upgraded to version 3.2 with partial support for __global_ldflags.
+
 * Sun May 22 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1.1
 - Removed some obsolete stuff.
 
