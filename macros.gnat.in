@@ -1,3 +1,8 @@
+# These RPM macros are used in packages containing Ada code.
+# Copyright 2009 - 2011 B. Persson, Bjorn@Rombobeorn.se
+# You may do whatever you want with this code as long as you acknowledge the
+# author's copyright.
+
 %_GNAT_project_dir @GNAT_project_dir@
 # _GNAT_project_dir is the directory where GNAT project files shall be.
 
@@ -16,15 +21,21 @@
 # language to be compiled is Ada.
 # -gnatn enables pragma Inline.
 
-%Gnatlink_flags -g
+%Gnatlink_flags %{__global_ldflags} -g
 # -g makes Gnatlink refrain from deleting binder files so that they can be
 # included in debuginfo packages.
 
 %Gnatmake_optflags -cargs %{Ada_optflags} -largs %{Gnatlink_flags} -margs %{GNAT_builder_flags}
-%GPRbuild_optflags -cargs:Ada %{Ada_optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -gargs %{GNAT_builder_flags}
+%GPRbuild_optflags -cargs:Ada %{Ada_optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -largs %{__global_ldflags} -gargs %{GNAT_builder_flags}
 # Gnatmake_optflags and GPRbuild_optflags contain both the parameters for the
 # builder itself and parameters that the builder shall pass to the tools it
-# invokes.
+# invokes. -margs and -gargs must be used after all other mode switches to
+# restore the mode, so that other parameters will work as intended when these
+# macros are included in longer command lines.
+
+# Note: -largs affects only the linking of programs, not the linking of shared
+# libraries. __global_ldflags is currently not used for Ada libraries built
+# with Gnat project files.
 
 %GNAT_optflags %{Gnatmake_optflags}
 # GNAT_optflags is retained for compatibility.

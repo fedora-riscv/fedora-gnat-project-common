@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright 2011 B. Persson, Bjorn@Rombobeorn.se
+# You may do whatever you want with this code as long as you acknowledge the
+# author's copyright.
 
 # Provide exec_prefix, bindir, libexecdir, includedir and GNAT_project_dir to
 # this script as environment variables.
