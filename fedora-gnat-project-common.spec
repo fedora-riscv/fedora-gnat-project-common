@@ -1,5 +1,5 @@
 Name:           fedora-gnat-project-common
-Version:        3.2
+Version:        3.3
 Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
@@ -54,6 +54,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Mon Aug 22 2011 Björn Persson <bjorn@rombobjörn.se> - 3.3-1
+- Upgraded to version 3.3 with GNAT_arches.
+
 * Wed Aug 03 2011 Björn Persson <bjorn@rombobjörn.se> - 3.2-1
 - Upgraded to version 3.2 with partial support for __global_ldflags.
 
