@@ -14,3 +14,8 @@
 %GNAT_optflags -cargs %{optflags} -largs -g -margs %{GNAT_builder_flags}
 # GNAT_optflags contains both the parameters for the builder itself and
 # parameters that the builder shall pass to the compiler.
+
+# macros backported from version 3.3:
+%Gnatmake_optflags %{GNAT_optflags}
+%GPRbuild_optflags -cargs:Ada %{optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -gargs %{GNAT_builder_flags}
+%GNAT_arches %{ix86} x86_64 ia64 ppc ppc64 alpha
