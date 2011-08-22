@@ -1,5 +1,5 @@
 Name:           fedora-gnat-project-common
-Version:        2.3
+Version:        2.4
 Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
@@ -57,6 +57,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Aug 22 2011 Björn Persson <bjorn@rombobjörn.se> - 2.4-1
+- Updated to version 2.4 with backported Gnatmake_optflags, GPRbuild_optflags and
+  GNAT_arches.
+
 * Wed Apr 15 2011 Björn Persson <bjorn@rombobjörn.se> - 2.3-1
 - Updated to version 2.3 to get binder files back in debuginfo packages.
 
