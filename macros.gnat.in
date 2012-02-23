@@ -17,12 +17,14 @@
 # -p creates directories specified in project files.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
-%Ada_optflags %{optflags} -gnatn -gnatyN
+%Ada_optflags %{optflags} -gnatn -gnat-p -gnatVd -gnatwn -gnatyN
 # Ada_optflags contains parameters to be passed to the compiler, GCC, when the
 # language to be compiled is Ada.
 # -gnatn enables pragma Inline.
-# -gnatyN turns off style checks. They are irrelevant to packagers and can even
-# cause build failures in combination with -gnatwe.
+# -gnat-p and -gnatVd try to prevent dangerous suppression of important checks.
+# -gnatwn means don't treat warnings as errors (and also don't suppress them).
+# (Otherwise -gnatwe could turn quite harmless conditions into build failures.)
+# -gnatyN turns off style checks. They are irrelevant to packagers.
 
 %Gnatlink_flags %{__global_ldflags} -g
 # -g makes Gnatlink refrain from deleting binder files so that they can be
