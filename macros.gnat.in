@@ -6,11 +6,6 @@
 %_GNAT_project_dir @GNAT_project_dir@
 # _GNAT_project_dir is the directory where GNAT project files shall be.
 
-%GNAT_arches %{ix86} x86_64 ia64 ppc ppc64 alpha
-# GNAT_arches lists the architectures where GNAT is available in Fedora. Ada
-# packages won't build on other architectures until GNAT is bootstrapped for
-# them.
-
 %GNAT_builder_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)') -R -p -XHARDWARE_PLATFORM=%{_arch}
 # GNAT_builder_flags contains only parameters for the builder, that is either
 # Gnatmake or GPRbuild. It does not include flags for the tools that the builder
