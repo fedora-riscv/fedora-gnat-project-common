@@ -59,6 +59,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 - GNAT_arches has been moved to macros.gnat-srpm in redhat-rpm-config.
 - The location of GNAT project files has been changed to /usr/share/gpr.
 
+* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Mon Aug 22 2011 Björn Persson <bjorn@rombobjörn.se> - 3.3-1
 - Upgraded to version 3.3 with GNAT_arches.
 
