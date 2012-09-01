@@ -6,14 +6,27 @@
 %_GNAT_project_dir @GNAT_project_dir@
 # _GNAT_project_dir is the directory where GNAT project files shall be.
 
-%GNAT_builder_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)') -R -p -XHARDWARE_PLATFORM=%{_arch}
+%GNAT_builder_concurrency_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)')
+# GNAT_builder_concurrency_flags controls how many compilations the builder
+# runs in parallel.
+# Gnatmake and GPRbuild have a -j parameter just like Make, but they might not
+# understand any other Make parameter that might appear in _smp_mflags some
+# day, so we extract only -j from _smp_mflags.
+
+%GNAT_builder_rpath_flags %{?!GNAT_add_rpath:-R}
+# GNAT_builder_rpath_flags controls the inclusion of a runtime library search
+# path (runpath) in the built binaries.
+# By default -R is passed to avoid an unnecessary runpath. The builder's
+# computed runpath can be enabled by defining GNAT_add_rpath.
+
+# Note: Gnatmake currently ignores -R when it builds shared libraries, and
+# always adds a runpath. Libraries need to be post-processed with chrpath, or
+# GPRbuild can be used instead.
+
+%GNAT_builder_flags %{GNAT_builder_concurrency_flags} %{GNAT_builder_rpath_flags} -p -XHARDWARE_PLATFORM=%{_arch}
 # GNAT_builder_flags contains only parameters for the builder, that is either
 # Gnatmake or GPRbuild. It does not include flags for the tools that the builder
 # invokes.
-# Gnatmake and GPRbuild have a -j parameter just like Make, but they might not
-# understand any other Make parameter that might appear in _smp_mflags some day,
-# so extract only -j from _smp_mflags.
-# -R avoids an unnecessary runpath in some cases.
 # -p creates directories specified in project files.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
