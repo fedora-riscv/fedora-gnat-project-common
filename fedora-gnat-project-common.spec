@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.4
-Release:        2%{?dist}
+Version:        3.5
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -52,6 +52,10 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Fri Sep 07 2012 Björn Persson <bjorn@rombobjörn.se> - 3.5-1
+- Upgraded to version 3.5.
+- Inclusion of runpaths can be controlled with GNAT_add_rpath.
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
