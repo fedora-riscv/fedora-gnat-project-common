@@ -16,7 +16,7 @@ Requires:       libgnat-static
 # macros.gnat requires __global_ldflags:
 Requires:       redhat-rpm-config >= 9.1.0-13
 # Distribute this package only for architectures where gcc-gnat is available:
-ExclusiveArch:  %{GNAT_arches}
+ExclusiveArch:  noarch %{GNAT_arches}
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
