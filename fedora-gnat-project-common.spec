@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -10,13 +10,15 @@ URL:            https://fedorahosted.org/released/fedora-gnat-project-common
 Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/download/fedora-gnat-project-common-%{version}.tar.gz
 BuildArch:      noarch
 
-Requires:       gcc-gnat setup
+Requires:       setup
 # workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
 Requires:       libgnat-static
 # macros.gnat requires __global_ldflags:
 Requires:       redhat-rpm-config >= 9.1.0-13
-# Distribute this package only for architectures where gcc-gnat is available:
+# Distribute this package only for architectures where libgnat-static is
+# available:
 ExclusiveArch:  noarch %{GNAT_arches}
+# ("noarch" is included so that the build works.)
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
@@ -54,6 +56,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Tue Nov 06 2012 Björn Persson <bjorn@rombobjörn.se> - 3.5-3
+- Removed the dependency on gcc-gnat.
+
 * Fri Oct 05 2012 Björn Persson <bjorn@rombobjörn.se> - 3.5-2
 - Added ExclusiveArch to distribute the package only for architectures where
   gcc-gnat is available.
