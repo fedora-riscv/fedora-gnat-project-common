@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -56,6 +56,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.5-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Tue Nov 06 2012 Björn Persson <bjorn@rombobjörn.se> - 3.5-3
 - Removed the dependency on gcc-gnat.
 
