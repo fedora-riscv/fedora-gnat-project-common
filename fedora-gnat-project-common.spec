@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.5
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -52,10 +52,14 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 %doc LICENSE
 %{_GNAT_project_dir}
 %config(noreplace) %{_sysconfdir}/profile.d/*
-%config(noreplace) %{_sysconfdir}/rpm/*
+%{_sysconfdir}/rpm/*
 
 
 %changelog
+* Mon Mar 11 2013 Ralf Corsépius <corsepiu@fedoraproject.org> - 3.5-5
+- Remove %%config from %%{_sysconfdir}/rpm/macros.*
+  (https://fedorahosted.org/fpc/ticket/259).
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.5-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
