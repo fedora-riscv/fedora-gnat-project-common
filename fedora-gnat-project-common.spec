@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.5
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -32,6 +32,8 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 # _GNAT_project_dir is defined here and copied from here to macros.gnat so that
 # this package won't build-require itself.
 
+%global RPM_macro_dir %{_rpmconfigdir}/macros.d
+
 
 %prep
 %setup -q -T -b 1
@@ -42,20 +44,33 @@ exec_prefix=%{_exec_prefix} bindir=%{_bindir} libexecdir=%{_libexecdir} included
 
 
 %install
-mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{_sysconfdir}/rpm/
+mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{RPM_macro_dir}
 cp -p directories.gpr %{buildroot}%{_GNAT_project_dir}/
 cp -p gnat-project.sh gnat-project.csh %{buildroot}%{_sysconfdir}/profile.d/
-cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
+# Write an explanation where macros.gnat used to be. Remove it in 2015.
+mkdir %{buildroot}%{_sysconfdir}/rpm
+cat <<'EOF' > %{buildroot}%{_sysconfdir}/rpm/macros.gnat
+# macros.gnat has been moved to %{RPM_macro_dir} because it's not
+# intended as a configuration file. If local customization is necessary it
+# should be done in a separate file here in %{_sysconfdir}/rpm.
+EOF
+# Overwrite the explanation with the macros rather than the opposite if the
+# directories are the same (which they are not supposed to be).
+cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %files
 %doc LICENSE
 %{_GNAT_project_dir}
 %config(noreplace) %{_sysconfdir}/profile.d/*
+%{RPM_macro_dir}/*
 %{_sysconfdir}/rpm/*
 
 
 %changelog
+* Sat Mar 16 2013 Björn Persson <bjorn@rombobjörn.se> - 3.5-6
+- Moved macros.gnat out of /etc because it isn't a configuration file.
+
 * Mon Mar 11 2013 Ralf Corsépius <corsepiu@fedoraproject.org> - 3.5-5
 - Remove %%config from %%{_sysconfdir}/rpm/macros.*
   (https://fedorahosted.org/fpc/ticket/259).
