@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.5
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -15,6 +15,8 @@ Requires:       setup
 Requires:       libgnat-static
 # macros.gnat requires __global_ldflags:
 Requires:       redhat-rpm-config >= 9.1.0-13
+# An RPM that knows about /usr/lib/rpm/macros.d is required:
+Requires:       rpm >= 4.11
 # Distribute this package only for architectures where libgnat-static is
 # available:
 ExclusiveArch:  noarch %{GNAT_arches}
@@ -68,6 +70,9 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %changelog
+* Mon Mar 25 2013 Björn Persson <bjorn@rombobjörn.se> - 3.5-7
+- RPM 4.11 or later is required.
+
 * Sat Mar 16 2013 Björn Persson <bjorn@rombobjörn.se> - 3.5-6
 - Moved macros.gnat out of /etc because it isn't a configuration file.
 
