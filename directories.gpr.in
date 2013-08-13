@@ -21,14 +21,16 @@
 project Directories is
 
    type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "s390", "s390x",
-                          "sparc", "sparc64", "arm", "alpha", "ia64");
+                          "sparc", "sparc64", "arm", "armv7l", "aarch64",
+                          "alpha", "ia64", "sh");
    Hardware_Platform : Platform_Type := external ("HARDWARE_PLATFORM");
 
    Lib := "";
    case Hardware_Platform is
-      when "i386" | "ppc" | "s390" | "sparc" | "arm" =>
+      when "i386" | "ppc" | "s390" | "sparc" | "arm" | "armv7l" | "alpha" |
+           "ia64" | "sh" =>
          Lib := "lib";
-      when "x86_64" | "ppc64" | "s390x" | "sparc64" | "alpha" | "ia64" =>
+      when "x86_64" | "ppc64" | "s390x" | "sparc64" | "aarch64" =>
          Lib := "lib64";
    end case;
    Libdir := "@exec_prefix@/" & Lib;
