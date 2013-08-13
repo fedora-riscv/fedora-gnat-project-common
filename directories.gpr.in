@@ -18,7 +18,7 @@
 -- should probably define it themselves or use the command line parameter. RPM
 -- spec files should simply use the macros that are defined in macros.gnat.
 
-project Directories is
+abstract project Directories is
 
    type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "s390", "s390x",
                           "sparc", "sparc64", "arm", "armv7l", "aarch64",
@@ -38,8 +38,5 @@ project Directories is
    Bindir := "@bindir@";
    Libexecdir := "@libexecdir@";
    Includedir := "@includedir@";
-
-   -- This file is only for other projects to import. It has no source files.
-   for Source_Files use ();
 
 end Directories;
