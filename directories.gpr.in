@@ -35,8 +35,10 @@ abstract project Directories is
    end case;
    Libdir := "@exec_prefix@/" & Lib;
 
-   Bindir := "@bindir@";
-   Libexecdir := "@libexecdir@";
-   Includedir := "@includedir@";
+   Bindir         := "@bindir@";
+   Libexecdir     := "@libexecdir@";
+   Includedir     := "@includedir@";
+   Archincludedir := Libdir;
+   Alidir         := Libdir;
 
 end Directories;
