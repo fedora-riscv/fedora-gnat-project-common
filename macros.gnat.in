@@ -1,5 +1,5 @@
 # These RPM macros are used in packages containing Ada code.
-# Copyright 2009 - 2012 B. Persson, Bjorn@Rombobeorn.se
+# Copyright 2009 - 2013 B. Persson, Bjorn@Rombobeorn.se
 # You may do whatever you want with this code as long as you acknowledge the
 # author's copyright.
 
@@ -57,3 +57,24 @@
 
 %GNAT_optflags %{Gnatmake_optflags}
 # GNAT_optflags is retained for compatibility.
+
+%Comfignat_make %{__make} GNAT_BUILDER_FLAGS="${GNAT_BUILDER_FLAGS:-%{GNAT_builder_flags}}" \\\
+                          ADAFLAGS="${ADAFLAGS:-%{Ada_optflags}}" \\\
+                          CFLAGS="${CFLAGS:-%{optflags}}" \\\
+                          CXXFLAGS="${CXXFLAGS:-%{optflags}}" \\\
+                          FFLAGS="${FFLAGS:-%{optflags} -I%{_fmoddir}}" \\\
+                          LDFLAGS="${LDFLAGS:-%{__global_ldflags}}" \\\
+                          dirgpr=directories.gpr \\\
+                          prefix=%{_prefix} \\\
+                          exec-prefix=%{_exec_prefix} \\\
+                          datarootdir=%{_datarootdir} \\\
+                          localstatedir=%{_localstatedir} \\\
+                          datadir=%{_datadir} \\\
+                          sysconfdir=%{_sysconfdir} \\\
+                          gprdir=%{_GNAT_project_dir} \\\
+                          mandir=%{_mandir} \\\
+                          infodir=%{_infodir}
+# Comfignat_make is the command for building a package whose build system uses
+# Comfignat. It passes the standard parameters for the build tools, the
+# directories project and the installation pathnames to Make. A goal for Make
+# may be appended on the command line.
