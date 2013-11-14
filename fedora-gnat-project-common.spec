@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.5
-Release:        7%{?dist}
+Version:        3.7
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -70,6 +70,9 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %changelog
+* Wed Nov 13 2013 Björn Persson <bjorn@rombobjörn.se> - 3.7-1
+- Upgraded to version 3.7 with support for Comfignat 1.2.
+
 * Mon Mar 25 2013 Björn Persson <bjorn@rombobjörn.se> - 3.5-7
 - RPM 4.11 or later is required.
 
