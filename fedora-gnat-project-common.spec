@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.1
-Release:        1.1%{?dist}.1
+Version:        3.8
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -8,6 +8,7 @@ Group:          System Environment/Libraries
 License:        Copyright only
 URL:            https://fedorahosted.org/released/fedora-gnat-project-common
 Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/download/fedora-gnat-project-common-%{version}.tar.gz
+Patch1:         fedora-gnat-project-common-3.8-abstract_project.patch
 BuildArch:      noarch
 
 Requires:       gcc-gnat setup
@@ -29,6 +30,7 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
 %prep
 %setup -q -T -b 1
+%patch1
 
 
 %build
@@ -50,6 +52,9 @@ cp -p macros.gnat %{buildroot}%{_sysconfdir}/rpm/
 
 
 %changelog
+* Tue Nov 26 2013 Björn Persson <bjorn@rombobjörn.se> - 3.8-1
+- Upgraded to version 3.8 with support for Comfignat 1.2.
+
 * Tue Jul 05 2011 Björn Persson <bjorn@rombobjörn.se> - 3.1-1.1.el6.1
 - Branched for EPEL 6.
 - Removed the workaround for bug 613407, which doesn't exist in EPEL 6.

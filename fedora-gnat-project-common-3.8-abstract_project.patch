@@ -1,0 +1,9 @@
+--- directories.gpr.in	(revision 44)
++++ directories.gpr.in	(arbetskopia)
+@@ -41,4 +41,6 @@
+    Archincludedir := Libdir;
+    Alidir         := Libdir;
+ 
++   for Source_Files use ();
++
+ end Directories;
