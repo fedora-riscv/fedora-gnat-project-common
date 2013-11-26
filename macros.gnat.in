@@ -64,6 +64,7 @@
                           CXXFLAGS="${CXXFLAGS:-%{optflags}}" \\\
                           FFLAGS="${FFLAGS:-%{optflags} -I%{_fmoddir}}" \\\
                           LDFLAGS="${LDFLAGS:-%{__global_ldflags}}" \\\
+                          GNATLINKFLAGS="${GNATLINKFLAGS:--g}" \\\
                           dirgpr=directories.gpr \\\
                           prefix=%{_prefix} \\\
                           exec-prefix=%{_exec_prefix} \\\
