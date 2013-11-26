@@ -41,4 +41,6 @@ abstract project Directories is
    Archincludedir := Libdir;
    Alidir         := Libdir;
 
+   for Source_Files use ();
+
 end Directories;
