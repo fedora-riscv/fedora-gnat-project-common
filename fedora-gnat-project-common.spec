@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -60,6 +60,9 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %changelog
+* Sun Feb 08 2015 Björn Persson <bjorn@rombobjörn.se> - 3.8-3
+- Removed a temporary explanation file.
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
