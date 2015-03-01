@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -53,13 +53,16 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %files
-%doc LICENSE
+%license LICENSE
 %{_GNAT_project_dir}
 %config(noreplace) %{_sysconfdir}/profile.d/*
 %{RPM_macro_dir}/*
 
 
 %changelog
+* Sun Mar 01 2015 Björn Persson <bjorn@rombobjörn.se> - 3.8-4
+- Tagged the license file as such.
+
 * Sun Feb 08 2015 Björn Persson <bjorn@rombobjörn.se> - 3.8-3
 - Removed a temporary explanation file.
 
