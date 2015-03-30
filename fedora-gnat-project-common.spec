@@ -10,6 +10,7 @@ URL:            https://fedorahosted.org/released/fedora-gnat-project-common
 Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/download/fedora-gnat-project-common-%{version}.tar.gz
 BuildArch:      noarch
 
+BuildRequires:  sed
 Requires:       setup
 # workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
 Requires:       libgnat-static
