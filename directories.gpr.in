@@ -6,10 +6,10 @@
 -- GNAT project files for packaged libraries need to point to architecture-
 -- specific files in /usr/lib or /usr/lib64 (or other architecture-specific
 -- directories). To work correctly in a multilib system they should import
--- this file and use the variable Libdir, for example like this:
+-- this file and use the variables it defines, for example like this:
 --
 --    for Library_Dir use Directories.Libdir;
---    for Library_ALI_Dir use Directories.Libdir & "/example_library";
+--    for Library_ALI_Dir use Directories.Alidir & "/example_library";
 --
 -- Information on what the hardware platform is comes from the environment
 -- variable HARDWARE_PLATFORM, which is defined in /etc/profile.d/ and can be
