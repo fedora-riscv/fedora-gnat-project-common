@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.8
-Release:        5%{?dist}
+Version:        3.9
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -61,6 +61,10 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %changelog
+* Sun Jul 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-1
+- Upgraded to version 3.9.
+- The architecture ppc64le has been added.
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.8-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
