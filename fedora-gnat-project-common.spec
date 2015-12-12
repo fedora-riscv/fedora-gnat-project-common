@@ -1,8 +1,8 @@
-%bcond_without experiment
+%bcond_with experiment
 
 Name:           fedora-gnat-project-common
 Version:        3.9
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -77,7 +77,7 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 
 
 %changelog
-* Sat Dec 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-2
+* Sat Dec 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-3
 - Rebuilt for experiments with Koji.
 
 * Sun Jul 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-1
