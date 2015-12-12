@@ -1,8 +1,6 @@
-%bcond_with experiment
-
 Name:           fedora-gnat-project-common
 Version:        3.9
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -33,14 +31,6 @@ project files of multiple Ada libraries, and also GNAT-specific RPM macros.
 Paketet fedora-gnat-project-common innehåller filer som används av
 GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
-
-%package experiment
-Summary:        Koji experimentation
-
-%description experiment
-I'm experimenting to find out how Koji handles a dropped subpackage.
-
-
 %global _GNAT_project_dir /usr/share/gpr
 # _GNAT_project_dir is defined here and copied from here to macros.gnat so that
 # this package won't build-require itself.
@@ -70,15 +60,9 @@ cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
 %{RPM_macro_dir}/*
 
 
-%if %{with experiment}
-%files experiment
-%{RPM_macro_dir}/macros.gnat
-%endif
-
-
 %changelog
-* Sat Dec 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-3
-- Rebuilt for experiments with Koji.
+* Sat Dec 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-4
+- Restored after experiments with Koji.
 
 * Sun Jul 12 2015 Björn Persson <bjorn@rombobjörn.se> - 3.9-1
 - Upgraded to version 3.9.
