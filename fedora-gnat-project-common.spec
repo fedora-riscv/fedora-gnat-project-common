@@ -6,8 +6,13 @@ Summary(sv):    Gemensamma filer för adabibliotek
 
 Group:          System Environment/Libraries
 License:        Copyright only
-URL:            https://fedorahosted.org/released/fedora-gnat-project-common
-Source1:        https://fedorahosted.org/released/fedora-gnat-project-common/download/fedora-gnat-project-common-%{version}.tar.gz
+URL:            https://src.fedoraproject.org/cgit/rpms/fedora-gnat-project-common.git
+Source1:        directories.gpr.in
+Source2:        macros.gnat.in
+Source3:        gnat-project.sh
+Source4:        gnat-project.csh
+Source5:        configure
+Source6:        LICENSE
 BuildArch:      noarch
 
 BuildRequires:  sed
@@ -39,7 +44,8 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 
 
 %prep
-%setup -q -T -b 1
+%setup -c -T
+cp --preserve=timestamps %{sources} .
 
 
 %build
