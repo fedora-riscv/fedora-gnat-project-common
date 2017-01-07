@@ -1,0 +1,45 @@
+-- This file helps GNAT project files to work in a multilib system.
+-- Copyright 2009 - 2015 B. Persson, Bjorn@Rombobeorn.se
+-- You may do whatever you want with this code as long as you acknowledge the
+-- author's copyright.
+
+-- GNAT project files for packaged libraries need to point to architecture-
+-- specific files in /usr/lib or /usr/lib64 (or other architecture-specific
+-- directories). To work correctly in a multilib system they should import
+-- this file and use the variables it defines, for example like this:
+--
+--    for Library_Dir use Directories.Libdir;
+--    for Library_ALI_Dir use Directories.Alidir & "/example_library";
+--
+-- Information on what the hardware platform is comes from the environment
+-- variable HARDWARE_PLATFORM, which is defined in /etc/profile.d/ and can be
+-- changed with the command "setarch" or overridden by a command line parameter.
+-- It may be undefined in a non-interactive shell, so automated build scripts
+-- should probably define it themselves or use the command line parameter. RPM
+-- spec files should simply use the macros that are defined in macros.gnat.
+
+abstract project Directories is
+
+   type Platform_Type is ("i386", "x86_64", "ppc", "ppc64", "ppc64le",
+                          "s390", "s390x",
+                          "sparc", "sparc64", "arm", "armv7l", "aarch64",
+                          "alpha", "ia64", "sh");
+   Hardware_Platform : Platform_Type := external ("HARDWARE_PLATFORM");
+
+   Lib := "";
+   case Hardware_Platform is
+      when "i386" | "ppc" | "s390" | "sparc" | "arm" | "armv7l" | "alpha" |
+           "ia64" | "sh" =>
+         Lib := "lib";
+      when "x86_64" | "ppc64" | "ppc64le" | "s390x" | "sparc64" | "aarch64" =>
+         Lib := "lib64";
+   end case;
+   Libdir := "@exec_prefix@/" & Lib;
+
+   Bindir         := "@bindir@";
+   Libexecdir     := "@libexecdir@";
+   Includedir     := "@includedir@";
+   Archincludedir := Libdir;
+   Alidir         := Libdir;
+
+end Directories;

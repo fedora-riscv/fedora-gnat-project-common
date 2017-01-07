@@ -1,0 +1,17 @@
+#!/bin/bash
+# Copyright 2011 B. Persson, Bjorn@Rombobeorn.se
+# You may do whatever you want with this code as long as you acknowledge the
+# author's copyright.
+
+# Provide exec_prefix, bindir, libexecdir, includedir and GNAT_project_dir to
+# this script as environment variables.
+
+for file in macros.gnat directories.gpr ; do
+    sed "--expression=s,@exec_prefix@,${exec_prefix},g" \
+        "--expression=s,@bindir@,${bindir},g" \
+        "--expression=s,@libexecdir@,${libexecdir},g" \
+        "--expression=s,@includedir@,${includedir},g" \
+        "--expression=s,@GNAT_project_dir@,${GNAT_project_dir},g" \
+        < "${file}.in" \
+        > "${file}"
+done

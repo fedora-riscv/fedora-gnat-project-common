@@ -1,0 +1,81 @@
+# These RPM macros are used in packages containing Ada code.
+# Copyright 2009 - 2013 B. Persson, Bjorn@Rombobeorn.se
+# You may do whatever you want with this code as long as you acknowledge the
+# author's copyright.
+
+%_GNAT_project_dir @GNAT_project_dir@
+# _GNAT_project_dir is the directory where GNAT project files shall be.
+
+%GNAT_builder_concurrency_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)')
+# GNAT_builder_concurrency_flags controls how many compilations the builder
+# runs in parallel.
+# Gnatmake and GPRbuild have a -j parameter just like Make, but they might not
+# understand any other Make parameter that might appear in _smp_mflags some
+# day, so we extract only -j from _smp_mflags.
+
+%GNAT_builder_rpath_flags %{?!GNAT_add_rpath:-R}
+# GNAT_builder_rpath_flags controls the inclusion of a runtime library search
+# path (runpath) in the built binaries.
+# By default -R is passed to avoid an unnecessary runpath. The builder's
+# computed runpath can be enabled by defining GNAT_add_rpath.
+
+# Note: Gnatmake currently ignores -R when it builds shared libraries, and
+# always adds a runpath. Libraries need to be post-processed with chrpath, or
+# GPRbuild can be used instead.
+
+%GNAT_builder_flags %{GNAT_builder_concurrency_flags} %{GNAT_builder_rpath_flags} -p -XHARDWARE_PLATFORM=%{_arch}
+# GNAT_builder_flags contains only parameters for the builder, that is either
+# Gnatmake or GPRbuild. It does not include flags for the tools that the builder
+# invokes.
+# -p creates directories specified in project files.
+# HARDWARE_PLATFORM is used by directories.gpr.
+
+%Ada_optflags %{optflags} -gnatn -gnat-p -gnatVd -gnatwn -gnatyN
+# Ada_optflags contains parameters to be passed to the compiler, GCC, when the
+# language to be compiled is Ada.
+# -gnatn enables pragma Inline.
+# -gnat-p and -gnatVd try to prevent dangerous suppression of important checks.
+# -gnatwn means don't treat warnings as errors (and also don't suppress them).
+# (Otherwise -gnatwe could turn quite harmless conditions into build failures.)
+# -gnatyN turns off style checks. They are irrelevant to packagers.
+
+%Gnatlink_flags %{?__global_ldflags} -g
+# -g makes Gnatlink refrain from deleting binder files so that they can be
+# included in debuginfo packages.
+
+%Gnatmake_optflags -cargs %{Ada_optflags} -largs %{Gnatlink_flags} -margs %{GNAT_builder_flags}
+%GPRbuild_optflags -cargs:Ada %{Ada_optflags} -cargs:C %{optflags} -cargs:C++ %{optflags} -cargs:Fortran %{optflags} -I%{_fmoddir} -largs %{?__global_ldflags} -gargs %{GNAT_builder_flags}
+# Gnatmake_optflags and GPRbuild_optflags contain both the parameters for the
+# builder itself and parameters that the builder shall pass to the tools it
+# invokes. -margs and -gargs must be used after all other mode switches to
+# restore the mode, so that other parameters will work as intended when these
+# macros are included in longer command lines.
+
+# Note: -largs affects only the linking of programs, not the linking of shared
+# libraries. __global_ldflags is currently not used for Ada libraries built
+# with Gnat project files.
+
+%GNAT_optflags %{Gnatmake_optflags}
+# GNAT_optflags is retained for compatibility.
+
+%Comfignat_make %{__make} GNAT_BUILDER_FLAGS="${GNAT_BUILDER_FLAGS:-%{GNAT_builder_flags}}" \\\
+                          ADAFLAGS="${ADAFLAGS:-%{Ada_optflags}}" \\\
+                          CFLAGS="${CFLAGS:-%{optflags}}" \\\
+                          CXXFLAGS="${CXXFLAGS:-%{optflags}}" \\\
+                          FFLAGS="${FFLAGS:-%{optflags} -I%{_fmoddir}}" \\\
+                          LDFLAGS="${LDFLAGS:-%{?__global_ldflags}}" \\\
+                          GNATLINKFLAGS="${GNATLINKFLAGS:--g}" \\\
+                          dirgpr=directories.gpr \\\
+                          prefix=%{_prefix} \\\
+                          exec-prefix=%{_exec_prefix} \\\
+                          datarootdir=%{_datarootdir} \\\
+                          localstatedir=%{_localstatedir} \\\
+                          datadir=%{_datadir} \\\
+                          sysconfdir=%{_sysconfdir} \\\
+                          gprdir=%{_GNAT_project_dir} \\\
+                          mandir=%{_mandir} \\\
+                          infodir=%{_infodir}
+# Comfignat_make is the command for building a package whose build system uses
+# Comfignat. It passes the standard parameters for the build tools, the
+# directories project and the installation pathnames to Make. A goal for Make
+# may be appended on the command line.
