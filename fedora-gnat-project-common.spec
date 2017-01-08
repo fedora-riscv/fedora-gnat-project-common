@@ -40,8 +40,6 @@ GNAT-projektfilerna för flera adabibliotek, samt GNAT-specifika RPM-makron.
 # _GNAT_project_dir is defined here and copied from here to macros.gnat so that
 # this package won't build-require itself.
 
-%global RPM_macro_dir %{_rpmconfigdir}/macros.d
-
 
 %prep
 %setup -c -T
@@ -53,17 +51,17 @@ exec_prefix=%{_exec_prefix} bindir=%{_bindir} libexecdir=%{_libexecdir} included
 
 
 %install
-mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{RPM_macro_dir}
+mkdir --parents %{buildroot}%{_GNAT_project_dir} %{buildroot}%{_sysconfdir}/profile.d %{buildroot}%{rpmmacrodir}
 cp -p directories.gpr %{buildroot}%{_GNAT_project_dir}/
 cp -p gnat-project.sh gnat-project.csh %{buildroot}%{_sysconfdir}/profile.d/
-cp -p macros.gnat %{buildroot}%{RPM_macro_dir}/
+cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %files
 %license LICENSE
 %{_GNAT_project_dir}
 %config(noreplace) %{_sysconfdir}/profile.d/*
-%{RPM_macro_dir}/*
+%{rpmmacrodir}/*
 
 
 %changelog
