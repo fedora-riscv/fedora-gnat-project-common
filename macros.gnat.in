@@ -1,5 +1,5 @@
 # These RPM macros are used in packages containing Ada code.
-# Copyright 2009 - 2013 B. Persson, Bjorn@Rombobeorn.se
+# Copyright 2009 - 2018 B. Persson, Bjorn@Rombobeorn.se
 # You may do whatever you want with this code as long as you acknowledge the
 # author's copyright.
 
@@ -23,11 +23,13 @@
 # always adds a runpath. Libraries need to be post-processed with chrpath, or
 # GPRbuild can be used instead.
 
-%GNAT_builder_flags %{GNAT_builder_concurrency_flags} %{GNAT_builder_rpath_flags} -p -XHARDWARE_PLATFORM=%{_arch}
+%GNAT_builder_flags %{GNAT_builder_concurrency_flags} %{GNAT_builder_rpath_flags} -p -vl -XHARDWARE_PLATFORM=%{_arch}
 # GNAT_builder_flags contains only parameters for the builder, that is either
 # Gnatmake or GPRbuild. It does not include flags for the tools that the builder
 # invokes.
 # -p creates directories specified in project files.
+# -vl shows the command lines for tools that the builder invokes, making build
+# logs more useful.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
 %Ada_optflags %{optflags} -gnatn -gnat-p -gnatVd -gnatwn -gnatyN
