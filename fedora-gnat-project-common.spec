@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -65,6 +65,9 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.11-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Thu Jul 12 2018 Björn Persson <Bjorn@Rombobjörn.se> - 3.11-1
 - Upgraded to version 3.11.
 
