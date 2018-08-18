@@ -69,7 +69,7 @@
                           GNATLINKFLAGS="${GNATLINKFLAGS:--g}" \\\
                           dirgpr=directories.gpr \\\
                           prefix=%{_prefix} \\\
-                          exec-prefix=%{_exec_prefix} \\\
+                          exec_prefix=%{_exec_prefix} \\\
                           datarootdir=%{_datarootdir} \\\
                           localstatedir=%{_localstatedir} \\\
                           datadir=%{_datadir} \\\
