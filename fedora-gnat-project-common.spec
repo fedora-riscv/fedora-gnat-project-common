@@ -4,7 +4,6 @@ Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
-Group:          System Environment/Libraries
 License:        Copyright only
 URL:            https://src.fedoraproject.org/cgit/rpms/fedora-gnat-project-common.git
 Source1:        directories.gpr.in
