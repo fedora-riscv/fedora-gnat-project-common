@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.12
-Release:        2%{?dist}
+Version:        3.13
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -16,16 +16,10 @@ BuildArch:      noarch
 
 BuildRequires:  sed
 Requires:       setup
-# workaround for https://bugzilla.redhat.com/show_bug.cgi?id=613407:
-Requires:       libgnat-static
 # macros.gnat requires __global_ldflags:
 Requires:       redhat-rpm-config >= 9.1.0-13
 # An RPM that knows about /usr/lib/rpm/macros.d is required:
 Requires:       rpm >= 4.11
-# Distribute this package only for architectures where libgnat-static is
-# available:
-ExclusiveArch:  noarch %{GNAT_arches}
-# ("noarch" is included so that the build works.)
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
@@ -64,6 +58,11 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Sat May 18 2019 Björn Persson <Bjorn@Rombobjörn.se> - 3.13-1
+- Since Gnatmake dropped project support it no longer searches for libgnat.a,
+  so the workaround of fedora-gnat-project-common requiring libgnat-static has
+  now been dropped.
+
 * Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.12-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
