@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.13
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -58,6 +58,9 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.13-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Sat May 18 2019 Björn Persson <Bjorn@Rombobjörn.se> - 3.13-1
 - Since Gnatmake dropped project support it no longer searches for libgnat.a,
   so the workaround of fedora-gnat-project-common requiring libgnat-static has
