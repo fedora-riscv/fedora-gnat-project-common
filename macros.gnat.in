@@ -6,12 +6,12 @@
 %_GNAT_project_dir @GNAT_project_dir@
 # _GNAT_project_dir is the directory where GNAT project files shall be.
 
-%GNAT_builder_concurrency_flags %(echo '%{?_smp_mflags}' | egrep --only-matching '(^| )-j[0-9]+( |$)')
+%GNAT_builder_concurrency_flags %{?_smp_build_ncpus:-j%{_smp_build_ncpus}}
 # GNAT_builder_concurrency_flags controls how many compilations the builder
 # runs in parallel.
 # Gnatmake and GPRbuild have a -j parameter just like Make, but they might not
 # understand any other Make parameter that might appear in _smp_mflags some
-# day, so we extract only -j from _smp_mflags.
+# day, so we take the value from _smp_build_ncpus instead.
 
 %GNAT_builder_rpath_flags %{?!GNAT_add_rpath:-R}
 # GNAT_builder_rpath_flags controls the inclusion of a runtime library search
