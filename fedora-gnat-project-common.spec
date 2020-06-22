@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
-Version:        3.13
-Release:        3%{?dist}
+Version:        3.14
+Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -59,6 +59,10 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Mon Jun 22 2020 Björn Persson <Bjorn@Rombobjörn.se> - 3.14-1
+- A macro definition has been simplified.
+- A dependency has been corrected.
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.13-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
