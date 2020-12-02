@@ -81,3 +81,14 @@
 # Comfignat. It passes the standard parameters for the build tools, the
 # directories project and the installation pathnames to Make. A goal for Make
 # may be appended on the command line.
+
+%Gprinstall_flags     --create-missing-dirs \\\
+                      --sources-subdir=%{buildroot}/%{_includedir}/%{name} \\\
+                      --project-subdir=%{buildroot}/%_GNAT_project_dir \\\
+                      --exec-subdir=%{buildroot}/%{_bindir} \\\
+                      --ali-subdir=%{buildroot}/%{_libdir}/%{name} \\\
+                      --lib-subdir=%{buildroot}/%{_libdir} \\\
+                      --link-lib-subdir=%{buildroot}/%{_libdir} 
+
+# Gprinstall_flags contains standard path for package installation is Fedora
+# It deprecates usage of directories.gpr in case if project uses gprinstall properly
