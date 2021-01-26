@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
@@ -59,6 +59,9 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.15-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Wed Dec  2 2020 Pavel Zhukov <pzhukov@redhat.com> - 3.15-1
 - Add flags for gprinstall into macros.gnat
 
