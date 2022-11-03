@@ -16,11 +16,6 @@ BuildArch:      noarch
 
 BuildRequires:  sed
 Requires:       setup
-# macros.gnat requires build_*flags:
-Requires:       redhat-rpm-config >= 94
-# macros.gnat uses _smp_build_ncpus (RPM 4.15),
-# and an RPM that knows about /usr/lib/rpm/macros.d (4.11) is required:
-Requires:       rpm >= 4.15
 
 %description
 The fedora-gnat-project-common package contains files that are used by the GNAT
