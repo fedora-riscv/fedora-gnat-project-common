@@ -53,10 +53,6 @@
 # restore the mode, so that other parameters will work as intended when these
 # macros are included in longer command lines.
 
-# Note: -largs affects only the linking of programs, not the linking of shared
-# libraries. build_ldflags is currently not used for Ada libraries built
-# with Gnat project files.
-
 %GNAT_optflags %{Gnatmake_optflags}
 # GNAT_optflags is retained for compatibility.
 
