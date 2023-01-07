@@ -1,5 +1,5 @@
 Name:           fedora-gnat-project-common
-Version:        3.16
+Version:        3.17
 Release:        1%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
@@ -54,6 +54,10 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 
 
 %changelog
+* Sat Jan 07 2023 Björn Persson <Bjorn@Rombobjörn.se> - 3.17-1
+- Added --no-manifest and -m to GPRinstall_flags.
+- Deprecated the "opt" part of macro names.
+
 * Mon Jun 22 2020 Björn Persson <Bjorn@Rombobjörn.se> - 3.16-1
 - Adapted to backward compatibility breakage in uname.
 
