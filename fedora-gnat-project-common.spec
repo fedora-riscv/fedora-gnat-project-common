@@ -58,7 +58,7 @@ cp -p macros.gnat %{buildroot}%{rpmmacrodir}/
 - Added --no-manifest and -m to GPRinstall_flags.
 - Deprecated the "opt" part of macro names.
 
-* Mon Jun 22 2020 Björn Persson <Bjorn@Rombobjörn.se> - 3.16-1
+* Thu Sep 22 2022 Björn Persson <Bjorn@Rombobjörn.se> - 3.16-1
 - Adapted to backward compatibility breakage in uname.
 
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.15-5
