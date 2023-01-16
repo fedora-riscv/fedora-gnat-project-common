@@ -1,7 +1,8 @@
 -- This file helps GNAT project files to work in a multilib system.
--- Copyright 2009 - 2015 B. Persson, Bjorn@Rombobeorn.se
--- You may do whatever you want with this code as long as you acknowledge the
--- author's copyright.
+-- Copyright 2009 - 2023 B. Persson, Bjorn@Rombobeorn.se
+-- Copying and distribution of this file, with or without modification, are
+-- permitted in any medium without royalty provided the copyright notice and
+-- this notice are preserved. This file is offered as-is, without any warranty.
 
 -- GNAT project files for packaged libraries need to point to architecture-
 -- specific files in /usr/lib or /usr/lib64 (or other architecture-specific

@@ -1,7 +1,8 @@
 # These RPM macros are used in packages containing Ada code.
 # Copyright 2009 - 2023 B. Persson, Bjorn@Rombobeorn.se
-# You may do whatever you want with this code as long as you acknowledge the
-# author's copyright.
+# Copying and distribution of this file, with or without modification, are
+# permitted in any medium without royalty provided the copyright notice and
+# this notice are preserved. This file is offered as-is, without any warranty.
 
 %_GNAT_project_dir @GNAT_project_dir@
 # _GNAT_project_dir is the directory where GNAT project files shall be.
