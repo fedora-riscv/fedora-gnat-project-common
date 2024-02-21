@@ -33,7 +33,7 @@
 # logs more useful.
 # HARDWARE_PLATFORM is used by directories.gpr.
 
-%build_adaflags %{optflags} -gnatn -gnat-p -gnatVd -gnatwn -gnatyN
+%build_adaflags %{optflags} -gnatn -gnat-p -gnatVd -gnatwn -gnatyN -Wtrampolines
 # build_adaflags contains parameters to be passed to the compiler, GCC, when the
 # language to be compiled is Ada.
 # -gnatn enables pragma Inline.
@@ -41,6 +41,10 @@
 # -gnatwn means don't treat warnings as errors (and also don't suppress them).
 # (Otherwise -gnatwe could turn quite harmless conditions into build failures.)
 # -gnatyN turns off style checks. They are irrelevant to packagers.
+# -Wtrampolines turns on a warning when the compiler needs to generate a
+# trampoline – executable code generated at run time on the stack. It should
+# help with diagnosing build failures caused by Fedora's restrictions on
+# executable stacks.
 
 %Gnatlink_flags %{build_ldflags} -g
 # -g makes Gnatlink refrain from deleting binder files so that they can be
