@@ -1,6 +1,6 @@
 Name:           fedora-gnat-project-common
 Version:        3.19
-Release:        1%{?dist}
+Release:        1.rv64%{?dist}
 Summary:        Files shared by Ada libraries
 Summary(sv):    Gemensamma filer för adabibliotek
 
