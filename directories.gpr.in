@@ -24,6 +24,7 @@ abstract project Directories is
    type Platform_Type is ("i386", "i486", "i586", "i686", "x86_64",
                           "ppc", "ppc64", "ppc64le",
                           "s390", "s390x",
+			  "riscv64",
                           "sparc", "sparc64", "arm", "armv7l", "aarch64",
                           "alpha", "ia64", "sh");
    Hardware_Platform : Platform_Type := external ("HARDWARE_PLATFORM");
@@ -33,7 +34,7 @@ abstract project Directories is
       when "i386" | "i486" | "i586" | "i686" | "ppc" | "s390" |
            "sparc" | "arm" | "armv7l" | "alpha" | "ia64" | "sh" =>
          Lib := "lib";
-      when "x86_64" | "ppc64" | "ppc64le" | "s390x" | "sparc64" | "aarch64" =>
+      when "x86_64" | "ppc64" | "ppc64le" | "s390x" | "sparc64" | "aarch64" | "riscv64" =>
          Lib := "lib64";
    end case;
    Libdir := "@exec_prefix@/" & Lib;
